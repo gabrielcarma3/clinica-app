@@ -64,9 +64,6 @@ function render(s) {
 
 function buildAppLayout() {
   app.innerHTML = `
-    <div class="demo-banner">
-      Este app usa Supabase para dados reais. <a href="#" id="setup-link">Ver instruções de configuração</a>
-    </div>
     <div class="app-layout">
       <div id="sidebar-overlay" class="sidebar-overlay"></div>
       <aside class="sidebar" id="sidebar">
@@ -126,11 +123,6 @@ function buildAppLayout() {
     toggleSidebar();
   });
   document.getElementById('sidebar-overlay')?.addEventListener('click', closeSidebar);
-
-  document.getElementById('setup-link')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    showSetupInstructions();
-  });
 }
 
 function toggleSidebar() {

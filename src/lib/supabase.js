@@ -3,8 +3,8 @@
 // Replace these values with your own Supabase project keys.
 // Create a free project at https://supabase.com
 // ============================================================
-export const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-export const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+export const SUPABASE_URL = 'https://lpmptzjnbamkgnradwkq.supabase.co';
+export const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxwbXB0empuYmFta2ducmFkd2txIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyNzcxMTYsImV4cCI6MjA5MTg1MzExNn0.oy6pGVpp17v6iObP2mXNI3psHNTLIo9r9Wav2EVFK3w';
 
 // ============================================================
 // SUPABASE SQL — run this in your Supabase SQL editor
