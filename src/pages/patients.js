@@ -182,8 +182,11 @@ export function renderPatientDetail(container) {
   container.querySelector('#edit-patient-btn')?.addEventListener('click', () => {
     openModal({ type: 'edit-patient', patient, onUpdate: () => renderPatientDetail(container) });
   });
-  container.querySelector('#archive-btn')?.addEventListener('click', () => {
-    archivePatient(patient.id);
+  container.querySelector('#archive-btn')?.addEventListener('click', async () => {
+    if (confirm(`Arquivar ${patient.name}? Ela não aparecerá mais na agenda.`)) {
+      await archivePatient(patient.id);
+      setState({ currentPage: 'patients' });
+    }
   });
 }
 

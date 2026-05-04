@@ -110,15 +110,26 @@ export function renderOnboarding(container) {
   function bindEvents() {
     document.getElementById('onboarding-form')?.addEventListener('submit', async (e) => {
       e.preventDefault();
-      profileData = {
-        full_name: document.getElementById('full_name').value.trim(),
-        crp: document.getElementById('crp').value.trim(),
-        phone: document.getElementById('phone').value.trim(),
-        clinic_name: document.getElementById('clinic_name').value.trim(),
-      };
-      await updateProfile(profileData);
-      step = 2;
-      render();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.textContent = 'Salvando...';
+      btn.disabled = true;
+      
+      try {
+        profileData = {
+          full_name: document.getElementById('full_name').value.trim(),
+          crp: document.getElementById('crp').value.trim(),
+          phone: document.getElementById('phone').value.trim(),
+          clinic_name: document.getElementById('clinic_name').value.trim(),
+        };
+        await updateProfile(profileData);
+        step = 2;
+        render();
+      } catch (err) {
+        console.error('[Onboarding Step1 Error]', err);
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
     });
 
     document.getElementById('patient-form')?.addEventListener('submit', async (e) => {

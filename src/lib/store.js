@@ -295,9 +295,15 @@ export async function markSessionPaid(id, method = 'pix') {
 }
 
 export async function updateProfile(data) {
-  await supabase.from('profiles').eq('id', state.user.id).update(data);
-  setState({ profile: { ...state.profile, ...data } });
-  showToast('Perfil atualizado', 'success');
+  try {
+    await supabase.from('profiles').eq('id', state.user.id).update(data);
+    setState({ profile: { ...state.profile, ...data } });
+    return true;
+  } catch (err) {
+    console.error('[UpdateProfile Error]', err);
+    showToast(`Erro ao atualizar perfil: ${err.message}`, 'error');
+    throw err;
+  }
 }
 
 // ============================================================

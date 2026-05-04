@@ -225,7 +225,9 @@ class QueryBuilder {
   }
 
   async update(body) {
-    const data = await this.client._fetch(this._buildUrl().replace(`?select=${this._select}`, ''), {
+    let url = `/rest/v1/${this.table}?`;
+    url += this._filters.join('&');
+    const data = await this.client._fetch(url, {
       method: 'PATCH',
       prefer: 'return=representation',
       body
@@ -234,7 +236,9 @@ class QueryBuilder {
   }
 
   async delete() {
-    await this.client._fetch(this._buildUrl().replace(`?select=${this._select}`, ''), {
+    let url = `/rest/v1/${this.table}?`;
+    url += this._filters.join('&');
+    await this.client._fetch(url, {
       method: 'DELETE'
     });
     return { error: null };
